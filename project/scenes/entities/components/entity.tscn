@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://bstb8gromuyc4"]
+
+[ext_resource type="Script" uid="uid://jy8nhl4y7j5h" path="res://scenes/entities/components/entity.gd" id="1_f8306"]
+
+[node name="Entity" type="CharacterBody2D"]
+script = ExtResource("1_f8306")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+
+[node name="TerrainCollider" type="CollisionShape2D" parent="."]
