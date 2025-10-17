@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="soucou 4pointcarré"
-run/main_scene="uid://4ti16i23kfxp"
+run/main_scene="uid://c35lh3rws8cfj"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
