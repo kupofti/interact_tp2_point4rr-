@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c5dd323m07fem"]
+
+[ext_resource type="Shader" uid="uid://dnj2yu0kg1cgk" path="res://assets/shaders/har_har.gdshader" id="1_jaq3i"]
+
+[resource]
+shader = ExtResource("1_jaq3i")
+shader_parameter/brightnessMult = 2.0
+shader_parameter/wiggleMult = 0.0
+shader_parameter/chromaticAberrationOffset = 0.001
