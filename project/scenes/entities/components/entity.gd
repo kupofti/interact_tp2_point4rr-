@@ -38,7 +38,7 @@ func _process(delta: float) -> void:
 	SPRITE.flip_h = heading
 
 	if not animOverride:
-		var new_anim := "idle" if direction.x == 0 else "walk"
+		var new_anim := "idle" if direction == Vector2.ZERO else "walk"
 		if new_anim != current_anim:
 			_set_animation(new_anim)
 
