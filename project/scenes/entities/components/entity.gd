@@ -20,7 +20,7 @@ var current_anim: String = ""
 
 func _ready() -> void:
 	if SPRITE:
-		# Catch any time animation changes or loops
+		# catch any time animation changes or loops
 		SPRITE.animation_changed.connect(_on_anim_started)
 		SPRITE.animation_finished.connect(_on_anim_finished)
 
@@ -42,15 +42,14 @@ func _process(delta: float) -> void:
 		if new_anim != current_anim:
 			_set_animation(new_anim)
 
-# Animation System
+#
+# Animation sequence system
+#
 
 func _set_animation(anim_name: String) -> void:
 	current_anim = anim_name
 	SPRITE.play(anim_name)
 	_play_animation_sound(anim_name)
-
-
-# Unified Animation Sequence System
 
 # plays an animation that overrides normal updates
 func play_sequence(anim_name: String, wait_for_finish: bool = true) -> void:
@@ -62,8 +61,9 @@ func play_sequence(anim_name: String, wait_for_finish: bool = true) -> void:
 	if wait_for_finish and not SPRITE.animation_finished.is_connected(_on_anim_finished):
 		SPRITE.animation_finished.connect(_on_anim_finished)
 
-
-# Audio Management
+#
+# Audio management
+#
 
 func _on_anim_started() -> void:
 	# Called automatically whenever an animation starts
