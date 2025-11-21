@@ -3,26 +3,28 @@ class_name EntityController extends CharacterBody2D;
 @onready var SPRITE: AnimatedSprite2D = $AnimatedSprite2D;
 @onready var AUDIO: AudioStreamPlayer2D = $AudioStreamPlayer2D;
 
+@export var health := 1.0;
+
 @export var ACCELERATION := 1000.0;
-@export var maxSpeed: float = 100.0;
+@export var maxSpeed := 100.0;
 
 var direction := Vector2.ZERO;
 var heading := false;
 var animOverride := false;
 
-var anim_sounds : Dictionary = {
+@export var animSounds: Dictionary = {
 	"idle": {"stream": null, "loop": false},
 	"walk": {"stream": preload("res://assets/audio/walk_hover.wav"), "loop": true},
 	"slash": {"stream": preload("res://assets/audio/slash.wav"), "loop": false},
 }
 
-var current_anim: String = "";
+var current_anim := "";
 
 func _ready() -> void:
 	if SPRITE:
-		# catch any time animation changes or loops
 		SPRITE.animation_changed.connect(_on_anim_started);
 		SPRITE.animation_finished.connect(_on_anim_finished);
+		SPRITE.animation_looped.connect(_on_anim_looped);
 
 func _physics_process(delta: float) -> void:
 	if direction != Vector2.ZERO:
@@ -32,7 +34,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide();
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if direction.x != 0:
 		heading = direction.x < 0;
 	SPRITE.flip_h = heading;
@@ -41,6 +43,22 @@ func _process(delta: float) -> void:
 		var new_anim := "idle" if direction == Vector2.ZERO else "walk";
 		if new_anim != current_anim:
 			_set_animation(new_anim);
+
+# 
+# Stats system
+#
+
+func die():
+	queue_free();
+
+func _on_hurtbox_hit(hurter, damage) -> void:
+	print(hurter, damage);
+
+	health -= damage;
+
+	if health <= 0.0:
+		die();
+
 
 #
 # Animation sequence system
@@ -71,11 +89,11 @@ func _on_anim_started() -> void:
 
 
 func _play_animation_sound(anim_name: String) -> void:
-	if not AUDIO or not anim_sounds.has(anim_name):
-		return;
+	if not AUDIO or not animSounds.has(anim_name):
+		return ;
 	
-	var data = anim_sounds[anim_name]
-	var stream: AudioStream = data.get("stream")
+	var data = animSounds[anim_name];
+	var stream: AudioStream = data.get("stream");
 	# var loop : bool = data.get("loop", false)
 	
 	if stream:

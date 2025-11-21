@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://bstb8gromuyc4"]
+[gd_scene load_steps=3 format=3 uid="uid://bstb8gromuyc4"]
 
 [ext_resource type="Script" uid="uid://jy8nhl4y7j5h" path="res://scenes/entities/components/entity.gd" id="1_f8306"]
+[ext_resource type="PackedScene" uid="uid://bmyjvdsgytqgb" path="res://scenes/entities/components/hurtbox.tscn" id="2_qgdek"]
 
 [node name="Entity" type="CharacterBody2D"]
 script = ExtResource("1_f8306")
@@ -8,9 +9,12 @@ metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
-[node name="TerrainCollider" type="CollisionShape2D" parent="."]
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_anim_finished"]
-[connection signal="animation_looped" from="AnimatedSprite2D" to="." method="_on_anim_looped"]
+[node name="TerrainCollider" type="CollisionShape2D" parent="."]
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_qgdek")]
+
+[connection signal="hit" from="Hurtbox" to="." method="_on_hurtbox_hit"]
+
+[editable path="Hurtbox"]

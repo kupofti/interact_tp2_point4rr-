@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://7tsx4exnsv3b"]
+
+[ext_resource type="PackedScene" uid="uid://bstb8gromuyc4" path="res://scenes/entities/components/entity.tscn" id="1_1aah6"]
+[ext_resource type="SpriteFrames" uid="uid://blmp1a75xy412" path="res://assets/sprites/dummy/dummy_animations.tres" id="2_13qj0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_chd5h"]
+size = Vector2(8, 4)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ajihr"]
+size = Vector2(10, 27)
+
+[node name="Dummy" instance=ExtResource("1_1aah6")]
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_13qj0")
+animation = &"idle"
+
+[node name="TerrainCollider" parent="." index="2"]
+position = Vector2(0, 14)
+shape = SubResource("RectangleShape2D_chd5h")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 1.5)
+shape = SubResource("RectangleShape2D_ajihr")
+
+[editable path="Hurtbox"]
