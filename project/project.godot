@@ -24,6 +24,7 @@ window/stretch/mode="canvas_items"
 
 hurtbox="Any hurtbox"
 hitbox="Any hitbox"
+enemies="Group for enemies of the player that don't hurt eachother"
 
 [input]
 

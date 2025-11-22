@@ -13,6 +13,11 @@ func _process(delta: float) -> void:
 
 	super (delta);
 
+	if heading:
+		swordHit.position.x = -abs(swordHit.position.x);
+	else:
+		swordHit.position.x = abs(swordHit.position.x);
+
 	if hasSword and Input.is_action_pressed("Attack") and not swinging:
 		slash();
 

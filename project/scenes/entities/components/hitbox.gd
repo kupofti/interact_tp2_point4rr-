@@ -5,8 +5,8 @@ extends Area2D
 @export var damage := 0.0;
 @export var ontime := INF;
 @export var offtime := 0.0;
+@export var enabled := false;
 
-var enabled := false;
 var heatup := 0.0;
 var cooldown := 0.0;
 
@@ -15,7 +15,7 @@ func _ready():
 
 func hitStart():
 	if cooldown > 0.0:
-		pass ;
+		return ;
 
 	enabled = true;
 	shape.disabled = false;

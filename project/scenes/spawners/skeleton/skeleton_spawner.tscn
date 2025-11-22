@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1fj21imnfjm3"]
+
+[ext_resource type="PackedScene" uid="uid://c48ms7sk3tke1" path="res://scenes/spawners/components/spawner.tscn" id="1_btkkm"]
+[ext_resource type="PackedScene" uid="uid://cjxxp0x3leaw8" path="res://scenes/entities/skeleton/skeleton.tscn" id="2_t6fdr"]
+
+[node name="SkeletonSpawner" instance=ExtResource("1_btkkm")]
+spawnScene = ExtResource("2_t6fdr")
+active = true

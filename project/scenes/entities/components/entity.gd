@@ -3,7 +3,8 @@ class_name EntityController extends CharacterBody2D;
 @onready var SPRITE: AnimatedSprite2D = $AnimatedSprite2D;
 @onready var AUDIO: AudioStreamPlayer2D = $AudioStreamPlayer2D;
 
-@export var health := 1.0;
+@export var maxHealth := 1.0;
+@onready var health := maxHealth;
 
 @export var ACCELERATION := 1000.0;
 @export var maxSpeed := 100.0;
@@ -48,17 +49,24 @@ func _process(_delta: float) -> void:
 # Stats system
 #
 
-func die():
-	queue_free();
-
-func _on_hurtbox_hit(hurter, damage) -> void:
-	print(hurter, damage);
-
+func hurt(hurter, damage):
+	print(health, " ", damage);
 	health -= damage;
 
 	if health <= 0.0:
 		die();
 
+	# Knockback
+	velocity = (position - hurter.position) * 6;
+
+	$HealthBar.emit_signal("update_health", health / maxHealth * 100);
+
+func die():
+	queue_free();
+
+func _on_hurtbox_hit(hurter, damage) -> void:
+	if hurter != self:
+		hurt(hurter, damage);
 
 #
 # Animation sequence system

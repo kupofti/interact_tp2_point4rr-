@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://cjxxp0x3leaw8"]
+
+[ext_resource type="PackedScene" uid="uid://bstb8gromuyc4" path="res://scenes/entities/components/entity.tscn" id="1_py50p"]
+[ext_resource type="Script" uid="uid://cqpg0s5t5efle" path="res://scenes/entities/skeleton/skeleton.gd" id="2_thk0v"]
+[ext_resource type="SpriteFrames" uid="uid://b83tyyg8r0dxc" path="res://assets/sprites/skeleton/skeleton_animations.tres" id="2_u58mj"]
+[ext_resource type="PackedScene" uid="uid://q54y0onnu4h5" path="res://scenes/entities/components/hitbox.tscn" id="4_tem1c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thk0v"]
+size = Vector2(4, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tem1c"]
+size = Vector2(6, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kvfbh"]
+size = Vector2(13, 5)
+
+[node name="Skeleton" groups=["enemies"] instance=ExtResource("1_py50p")]
+script = ExtResource("2_thk0v")
+maxHealth = 10.0
+ACCELERATION = 800.0
+maxSpeed = 40.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_u58mj")
+animation = &"walk"
+frame_progress = 0.173544
+
+[node name="TerrainCollider" parent="." index="2"]
+position = Vector2(0, 14.5)
+shape = SubResource("RectangleShape2D_thk0v")
+
+[node name="Hurtbox" parent="." index="3"]
+hitDelay = 4.0
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+position = Vector2(0, 2.5)
+shape = SubResource("RectangleShape2D_tem1c")
+
+[node name="GrabbyHitbox" parent="." index="4" instance=ExtResource("4_tem1c")]
+position = Vector2(2.5, 2.5)
+damage = 2.0
+enabled = true
+
+[node name="CollisionShape2D" parent="GrabbyHitbox" index="0"]
+shape = SubResource("RectangleShape2D_kvfbh")
+
+[node name="HealthBar" parent="." index="5"]
+offset_left = -8.0
+offset_top = -14.0
+offset_right = 70.0
+offset_bottom = -4.0
+
+[editable path="Hurtbox"]
+[editable path="GrabbyHitbox"]

@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func detect(entity, hitbox):
 	if cooldown > 0.0:
-		pass ;
+		return ;
 
 	cooldown = hitDelay;
 	hit.emit(entity, hitbox.damage);

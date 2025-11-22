@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://q54y0onnu4h5" path="res://scenes/entities/components/hitbox.tscn" id="5_bjvvg"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_58kc7"]
-size = Vector2(14, 4)
+size = Vector2(12, 4)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh4ur"]
 size = Vector2(10, 20)
@@ -17,6 +17,7 @@ size = Vector2(14, 19)
 
 [node name="Player" instance=ExtResource("1_1hmtu")]
 script = ExtResource("2_635qg")
+maxHealth = 80.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_58kc7")
@@ -36,7 +37,7 @@ offset_right = 144.0
 offset_bottom = 81.0
 
 [node name="TerrainCollider" parent="." index="3"]
-position = Vector2(-1, 13)
+position = Vector2(0, 13)
 shape = SubResource("RectangleShape2D_58kc7")
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
@@ -44,11 +45,18 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_nh4ur")
 
 [node name="SwordHitbox" parent="." index="5" instance=ExtResource("5_bjvvg")]
+position = Vector2(15, 6)
 damage = 1.0
+ontime = 0.4
 
 [node name="CollisionShape2D" parent="SwordHitbox" index="0"]
-position = Vector2(15, 6.5)
 shape = SubResource("RectangleShape2D_bjvvg")
+
+[node name="HealthBar" parent="." index="6"]
+offset_left = -8.0
+offset_top = -17.0
+offset_right = 70.0
+offset_bottom = -7.0
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_end_anim"]
 

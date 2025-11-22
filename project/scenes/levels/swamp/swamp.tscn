@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://4ti16i23kfxp"]
+[gd_scene load_steps=8 format=4 uid="uid://4ti16i23kfxp"]
 
 [ext_resource type="TileSet" uid="uid://bv4bw8hcdtc4l" path="res://assets/sprites/tile/dark_swamp.tres" id="1_q6nlj"]
 [ext_resource type="PackedScene" uid="uid://d2iw2mtkum4c1" path="res://scenes/entities/player/player.tscn" id="2_rn0s5"]
 [ext_resource type="PackedScene" uid="uid://7tsx4exnsv3b" path="res://scenes/entities/dummy/dummy.tscn" id="3_rn0s5"]
 [ext_resource type="PackedScene" uid="uid://bq8mto3b12xjr" path="res://scenes/interactables/components/interactable.tscn" id="3_xmw8p"]
 [ext_resource type="Script" uid="uid://s6dhijwbe5hc" path="res://scenes/levels/swamp/altar_pickup.gd" id="4_wk2g1"]
+[ext_resource type="PackedScene" uid="uid://d1fj21imnfjm3" path="res://scenes/spawners/skeleton/skeleton_spawner.tscn" id="6_xmw8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_emov8"]
 size = Vector2(28, 26.5)
@@ -21,9 +22,17 @@ tile_set = ExtResource("1_q6nlj")
 
 [node name="Player" parent="." instance=ExtResource("2_rn0s5")]
 position = Vector2(274, 336)
+motion_mode = 0
+platform_on_leave = 0
+platform_floor_layers = 4294967295
+safe_margin = 0.08
 
 [node name="Dummy" parent="." instance=ExtResource("3_rn0s5")]
 position = Vector2(454, 158)
+motion_mode = 0
+platform_on_leave = 0
+platform_floor_layers = 4294967295
+safe_margin = 0.08
 
 [node name="decoFG" type="TileMapLayer" parent="."]
 tile_map_data = PackedByteArray("AAAPAAMABQAhAAAAAAAPAAQABQAhAAEAAAAPAAUABQAhAAIAAAAQAAMABQAiAAAAAAAQAAQABQAiAAEAAAAQAAUABQAiAAIAAAARAAMABQAjAAAAAAARAAQABQAjAAEAAAARAAUABQAjAAIAAAASAAMABQAkAAAAAAASAAQABQAkAAEAAAASAAUABQAkAAIAAAAQAAYABQAiAAMAAAARAAYABQAjAAMAAAA=")
@@ -36,5 +45,10 @@ script = ExtResource("4_wk2g1")
 [node name="CollisionShape2D" parent="Interactable" index="0"]
 position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_emov8")
+
+[node name="SkeletonSpawner" parent="." instance=ExtResource("6_xmw8p")]
+position = Vector2(108, 334)
+spawns = 4
+spawnDelay = 2.0
 
 [editable path="Interactable"]

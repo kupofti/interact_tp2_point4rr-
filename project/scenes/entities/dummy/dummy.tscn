@@ -10,6 +10,7 @@ size = Vector2(8, 4)
 size = Vector2(10, 27)
 
 [node name="Dummy" instance=ExtResource("1_1aah6")]
+maxHealth = 1000.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("2_13qj0")
@@ -22,5 +23,11 @@ shape = SubResource("RectangleShape2D_chd5h")
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, 1.5)
 shape = SubResource("RectangleShape2D_ajihr")
+
+[node name="HealthBar" parent="." index="4"]
+offset_left = -7.0
+offset_top = -16.0
+offset_right = 71.0
+offset_bottom = -6.0
 
 [editable path="Hurtbox"]

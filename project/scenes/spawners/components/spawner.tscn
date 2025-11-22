@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://c48ms7sk3tke1"]
+
+[ext_resource type="Script" uid="uid://dlml08sqhdxqt" path="res://scenes/spawners/components/spawner.gd" id="1_u65kb"]
+
+[node name="Spawner" type="Marker2D"]
+script = ExtResource("1_u65kb")
