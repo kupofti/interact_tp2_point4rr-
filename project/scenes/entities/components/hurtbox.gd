@@ -16,10 +16,12 @@ func detect(entity, hitbox):
 		return ;
 
 	cooldown = hitDelay;
-	hit.emit(entity, hitbox.damage);
+	hit.emit(entity, hitbox.damage, self);
+
+func wake():
+	cooldown = 0.0;
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if cooldown > 0:
 		cooldown -= delta;
@@ -30,4 +32,5 @@ func _physics_process(_delta: float) -> void:
 	for area in areas:
 		if area.is_in_group("hitbox"):
 			var entity = area.owner;
-			detect(entity, area);
+			if entity != self.owner:
+				detect(entity, area);

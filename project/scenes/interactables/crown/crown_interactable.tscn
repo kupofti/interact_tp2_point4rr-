@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=3 uid="uid://ctrkmltr84461"]
+
+[ext_resource type="PackedScene" uid="uid://bq8mto3b12xjr" path="res://scenes/interactables/components/interactable.tscn" id="1_s6urh"]
+[ext_resource type="Script" uid="uid://5y2mepnxwa0c" path="res://scenes/interactables/crown/crown_interactable.gd" id="2_p3veb"]
+[ext_resource type="Texture2D" uid="uid://jj3w5pllibkn" path="res://assets/sprites/crown/crown.png" id="2_usq4p"]
+[ext_resource type="PackedScene" uid="uid://c48ms7sk3tke1" path="res://scenes/spawners/components/spawner.tscn" id="4_gtqto"]
+[ext_resource type="PackedScene" uid="uid://cjxxp0x3leaw8" path="res://scenes/entities/skeleton/skeleton.tscn" id="5_gtqto"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_p3veb"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hyx7b"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_usq4p")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CrownInteractable" instance=ExtResource("1_s6urh")]
+script = ExtResource("2_p3veb")
+zoom_in = Vector2(4, 4)
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("RectangleShape2D_p3veb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_hyx7b")
+
+[node name="Spawner" parent="." index="2" instance=ExtResource("4_gtqto")]
+spawnScene = ExtResource("5_gtqto")
+spawns = 500
+spawnDelay = 0.2

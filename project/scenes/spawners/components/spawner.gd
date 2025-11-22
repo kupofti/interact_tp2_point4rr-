@@ -4,6 +4,7 @@ extends Marker2D
 @export var spawns := 1;
 @export var spawnDelay := 1.0;
 @export var active := false;
+@export var dies := true;
 
 var cooldown := 0.0;
 
@@ -22,4 +23,7 @@ func _process(delta: float) -> void:
 			spawns -= 1;
 
 			if spawns <= 0:
-				queue_free();
+				if dies:
+					queue_free();
+				else:
+					active = false;

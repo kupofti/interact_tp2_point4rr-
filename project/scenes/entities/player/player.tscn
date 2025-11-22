@@ -21,14 +21,15 @@ maxHealth = 80.0
 
 [node name="AnimatedSprite2D" parent="." index="0"]
 sprite_frames = ExtResource("3_58kc7")
-animation = &"slash"
+animation = &"doom"
 autoplay = "idle"
+frame = 11
+frame_progress = 1.0
 
 [node name="Camera2D" type="Camera2D" parent="." index="2"]
 zoom = Vector2(4, 4)
 
 [node name="ColorRect" type="ColorRect" parent="Camera2D" index="0"]
-visible = false
 z_index = 2
 material = ExtResource("4_nh4ur")
 offset_left = -144.0
@@ -47,7 +48,7 @@ shape = SubResource("RectangleShape2D_nh4ur")
 [node name="SwordHitbox" parent="." index="5" instance=ExtResource("5_bjvvg")]
 position = Vector2(15, 6)
 damage = 1.0
-ontime = 0.4
+ontime = 0.5
 
 [node name="CollisionShape2D" parent="SwordHitbox" index="0"]
 shape = SubResource("RectangleShape2D_bjvvg")

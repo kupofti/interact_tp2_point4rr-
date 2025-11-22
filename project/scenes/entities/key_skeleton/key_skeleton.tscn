@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://bkpm3lu7ptty4"]
+
+[ext_resource type="PackedScene" uid="uid://cjxxp0x3leaw8" path="res://scenes/entities/skeleton/skeleton.tscn" id="1_cq51n"]
+[ext_resource type="SpriteFrames" uid="uid://bldr21b20cbbq" path="res://assets/sprites/key_skeleton/key_skeleton_animations.tres" id="2_c57bc"]
+[ext_resource type="Script" uid="uid://cttebgwqk8vst" path="res://scenes/entities/key_skeleton/key_skeleton.gd" id="2_cbf8d"]
+[ext_resource type="PackedScene" uid="uid://ctrkmltr84461" path="res://scenes/interactables/crown/crown_interactable.tscn" id="3_e3yi0"]
+
+[node name="KeySkeleton" instance=ExtResource("1_cq51n")]
+script = ExtResource("2_cbf8d")
+crownScene = ExtResource("3_e3yi0")
+maxHealth = 16.0
+ACCELERATION = 600.0
+maxSpeed = 80.0
+
+[node name="AnimatedSprite2D" parent="." index="0"]
+sprite_frames = ExtResource("2_c57bc")
+frame_progress = 0.0
+
+[node name="AudioStreamPlayer2D" parent="." index="1"]
+max_distance = 2000.0
+
+[node name="GrabbyHitbox" parent="." index="4"]
+damage = 6.0
+
+[node name="HealthBar" parent="." index="5"]
+offset_top = -18.0
+offset_bottom = -8.0
+
+[editable path="Hurtbox"]
+[editable path="GrabbyHitbox"]

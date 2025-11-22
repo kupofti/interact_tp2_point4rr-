@@ -5,6 +5,14 @@ extends EntityController;
 var hasSword := false;
 var swinging := false;
 
+func die():
+	play_sequence("death");
+
+func hurt(hurter, damage, box):
+	super(hurter, damage, box);
+
+	play_sequence("damage");
+
 func _process(delta: float) -> void:
 	direction = Vector2(
 		Input.get_axis("ui_left", "ui_right"),
@@ -34,3 +42,6 @@ func _on_anim_finished() -> void:
 
 	swinging = false;
 	swordHit.hitStop();
+	
+	if current_anim == "death":
+		get_tree().reload_current_scene();

@@ -49,8 +49,7 @@ func _process(_delta: float) -> void:
 # Stats system
 #
 
-func hurt(hurter, damage):
-	print(health, " ", damage);
+func hurt(hurter, damage, box):
 	health -= damage;
 
 	if health <= 0.0:
@@ -59,14 +58,17 @@ func hurt(hurter, damage):
 	# Knockback
 	velocity = (position - hurter.position) * 6;
 
+	hbupdate();
+
+func hbupdate():
 	$HealthBar.emit_signal("update_health", health / maxHealth * 100);
 
 func die():
 	queue_free();
 
-func _on_hurtbox_hit(hurter, damage) -> void:
+func _on_hurtbox_hit(hurter, damage, box) -> void:
 	if hurter != self:
-		hurt(hurter, damage);
+		hurt(hurter, damage, box);
 
 #
 # Animation sequence system
@@ -78,14 +80,14 @@ func _set_animation(anim_name: String) -> void:
 	_play_animation_sound(anim_name);
 
 # plays an animation that overrides normal updates
-func play_sequence(anim_name: String, wait_for_finish: bool = true) -> void:
+func play_sequence(anim_name: String, skippable := false) -> void:
+	if animOverride && !skippable:
+		return ;
+
 	animOverride = true;
 	current_anim = anim_name;
 	SPRITE.play(anim_name);
 	_play_animation_sound(anim_name);
-
-	if wait_for_finish and not SPRITE.animation_finished.is_connected(_on_anim_finished):
-		SPRITE.animation_finished.connect(_on_anim_finished);
 
 #
 # Audio management

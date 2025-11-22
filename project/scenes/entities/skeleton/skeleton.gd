@@ -12,9 +12,9 @@ func _process(delta: float) -> void:
 	else:
 		hands.position.x = abs(hands.position.x);
 
-func hurt(hurter, damage):
-	print(hurter.is_in_group("enemies"));
+func hurt(hurter, damage, box):
 	if hurter.is_in_group("enemies"):
+		box.wake();
 		return;
 
-	super (hurter, damage);
+	super (hurter, damage, box);

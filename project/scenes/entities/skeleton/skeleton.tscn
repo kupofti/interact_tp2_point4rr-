@@ -12,11 +12,11 @@ size = Vector2(4, 1)
 size = Vector2(6, 25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kvfbh"]
-size = Vector2(13, 5)
+size = Vector2(12, 5)
 
 [node name="Skeleton" groups=["enemies"] instance=ExtResource("1_py50p")]
 script = ExtResource("2_thk0v")
-maxHealth = 10.0
+maxHealth = 4.0
 ACCELERATION = 800.0
 maxSpeed = 40.0
 
@@ -30,14 +30,14 @@ position = Vector2(0, 14.5)
 shape = SubResource("RectangleShape2D_thk0v")
 
 [node name="Hurtbox" parent="." index="3"]
-hitDelay = 4.0
+hitDelay = 0.1
 
 [node name="CollisionShape2D" parent="Hurtbox" index="0"]
 position = Vector2(0, 2.5)
 shape = SubResource("RectangleShape2D_tem1c")
 
 [node name="GrabbyHitbox" parent="." index="4" instance=ExtResource("4_tem1c")]
-position = Vector2(2.5, 2.5)
+position = Vector2(2, 2.5)
 damage = 2.0
 enabled = true
 
